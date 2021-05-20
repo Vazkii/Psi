@@ -179,6 +179,10 @@ public class PlayerDataHandler {
 				if (event.getSource().isFireDamage()) {
 					PsiArmorEvent.post(new PsiArmorEvent(player, PsiArmorEvent.ON_FIRE));
 				}
+				if (player.getHealth() - event.getAmount() <= 0.0 && !PlayerDataHandler.get(player).lowHp) {
+					PsiArmorEvent.post(new PsiArmorEvent(player, PsiArmorEvent.LOW_HP));
+					PlayerDataHandler.get(player).lowHp = true;
+				}
 			}
 		}
 
